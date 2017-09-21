@@ -49,11 +49,11 @@ class Fellow(Person):
 
     def __init__(self, name, nationality, happiness_level=0):
         Fellow.number_of_fellows_created += 1
-        if Fellow.number_of_fellows_created == 5:
+        if Fellow.number_of_fellows_created > 4:
             try:
                 # raise Exception(name)
                 raise MoneyException(name)
-            except Exception as ex:
+            except MoneyException as ex:
                 print("{}: We cannot afford to hire {}".format(ex.__class__.__name__, "".join(ex.args)))
 
         super().__init__(name, nationality)
@@ -78,6 +78,7 @@ if __name__ == "__main__":
     miishe = Fellow("Miishe", "Ghanaian")
     edem = Fellow("Edem", "Ghanaian")
     kerry = Fellow("Kerry", "American")
+    pascal = Fellow("Pascal", "DRC")
 
     # create 3 eits
     elohor = EIT("elohor", "Nigerian")
