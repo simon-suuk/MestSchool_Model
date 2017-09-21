@@ -39,13 +39,23 @@ class EIT(Person):
         print("{}".format(fun_fact))
 
 
+class MoneyException(Exception):
+    def __init__(self, arg):
+        self.args = arg
+
+
 class Fellow(Person):
     number_of_fellows_created = 0
 
     def __init__(self, name, nationality, happiness_level=0):
         Fellow.number_of_fellows_created += 1
         if Fellow.number_of_fellows_created == 5:
-            raise Exception("We cannot afford to hire {}".format(name))
+            try:
+                # raise Exception(name)
+                raise MoneyException(name)
+            except Exception as ex:
+                print("{}: We cannot afford to hire {}".format(ex.__class__.__name__, "".join(ex.args)))
+
         super().__init__(name, nationality)
         self.happiness_level = happiness_level
 
@@ -63,14 +73,11 @@ if __name__ == "__main__":
     mest = School()
 
     # create 5 fellows
-    try:
-        andrew = Fellow("Andrew", "American")
-        simphiwe = Fellow("Simphiwe", "South African")
-        miishe = Fellow("Miishe", "Ghanaian")
-        edem = Fellow("Edem", "Ghanaian")
-        kerry = Fellow("Kerry", "American")
-    except ValueError as ex:
-        print("test exception")
+    andrew = Fellow("Andrew", "American")
+    simphiwe = Fellow("Simphiwe", "South African")
+    miishe = Fellow("Miishe", "Ghanaian")
+    edem = Fellow("Edem", "Ghanaian")
+    kerry = Fellow("Kerry", "American")
 
     # create 3 eits
     elohor = EIT("elohor", "Nigerian")
