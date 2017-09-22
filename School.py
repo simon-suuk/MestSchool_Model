@@ -72,7 +72,7 @@ if __name__ == "__main__":
     # create new school
     mest = School()
 
-    # create 5 fellows
+    # create more than 4 fellows
     andrew = Fellow("Andrew", "American")
     simphiwe = Fellow("Simphiwe", "South African")
     miishe = Fellow("Miishe", "Ghanaian")
